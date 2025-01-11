@@ -28,23 +28,13 @@ async function fetchAndSendHTML(targetURL, req, res) {
         const response = await axios.get(targetURL, {
             headers: {
                 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36',
-                Cookie: 'PHPSESSID=53b682bc4ce0bd430f1a869ab2718c98;',  // Using session cookies
+                Cookie: 'PHPSESSID=53b682bc4ce0bd430f1a869ab2718c98;'
             },
             withCredentials: true,
         });
 
-        // Check if the page contains CAPTCHA-related HTML elements
-        const captchaDetected = response.data.includes('captcha') || 
-                                response.data.includes('g-recaptcha') || 
-                                response.data.includes('Please verify that you are human');
-
-        if (captchaDetected) {
-            return res.status(403).send("CAPTCHA verification required. Unable to log in automatically.");
-        }
-
         const $ = cheerio.load(response.data);
 
-        // Update resource URLs
         $('link[href], script[src], img[src]').each((_, element) => {
             const attr = element.tagName === 'link' ? 'href' : 'src';
             const url = $(element).attr(attr);
@@ -58,7 +48,7 @@ async function fetchAndSendHTML(targetURL, req, res) {
         res.send($.html());
     } catch (error) {
         console.error('Error fetching data:', error.message);
-        res.status(500).send(`Failed to fetch content from the target URL: ${error.message}`);
+        res.status(500).send(`Failed to fetch content from Semrush: ${error.message}`);
     }
 }
 
@@ -104,7 +94,7 @@ app.get('/data-api/modal/neue-download', async (req, res) => {
                 'sec-fetch-dest': 'empty',
                 'sec-fetch-mode': 'cors',
                 'sec-fetch-site': 'same-origin',
-                'x-csrf-token-2': 'NWgzw4rDlQzDpAHDuW3DtVTCoBdrFsKkMwXCvFXDrTUedCMuw45ow4dhwoTCp8O4V8KrwpUywrnCkBxswq9gwoQMOMKNw4XDosKDZGZ2w4tWwocZw4nCkQ_DlMKwwo8',
+                'x-csrf-token-2': 'NWgzw4rDlQzDpAHDuW3DtVTCoBdrFsKkMwXCvFXDrTUedCMuw45ow4dhwoTCp8O4V8KrwpUywrnCkBxswq9gwoQMOMKNw4XDosKDZGZ2w4tWwocZw4nCkQ_DlMKwwo8',  // Ensure you include the CSRF token here
             },
             withCredentials: true,
         });
@@ -116,6 +106,8 @@ app.get('/data-api/modal/neue-download', async (req, res) => {
     }
 });
 
+
+
 // New route to handle POST requests for download_and_license.json
 app.post('/elements-api/items/:itemId/download_and_license.json', async (req, res) => {
     const { itemId } = req.params;
@@ -124,6 +116,8 @@ app.post('/elements-api/items/:itemId/download_and_license.json', async (req, re
         const cookies = process.env.COOKIE;  // Get cookie from the .env file
         // Construct the target URL for the API call
         const targetURL = `https://ee.proseotools.us/elements-api/items/${itemId}/download_and_license.json`;
+
+        
 
         // Making the POST request to the target API (if needed)
         const apiResponse = await axios.post(targetURL, req.body, {
@@ -151,6 +145,7 @@ app.post('/elements-api/items/:itemId/download_and_license.json', async (req, re
     }
 });
 
+
 // New route to handle POST requests to search-events-api
 app.post('/search-events-api', async (req, res) => {
     try {
@@ -159,6 +154,7 @@ app.post('/search-events-api', async (req, res) => {
             headers: {
                 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36',
                 'Content-Type': 'application/json',  // Make sure the content type is set for JSON
+                // Optionally, you can add other headers here if needed
             },
         });
 
@@ -168,6 +164,8 @@ app.post('/search-events-api', async (req, res) => {
         res.status(500).send(`Failed to fetch content from search-events-api: ${error.message}`);
     }
 });
+
+
 
 // Redirect from the form action to the desired path
 app.post('/manage', (req, res) => {
