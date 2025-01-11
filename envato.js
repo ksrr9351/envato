@@ -28,7 +28,7 @@ async function fetchAndSendHTML(targetURL, req, res) {
         const response = await axios.get(targetURL, {
             headers: {
                 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36',
-                Cookie: `PHPSESSID=6e8edbd832e46aad1f08310e65115bfa; SameSite=None; Secure;`
+                Cookie: `PHPSESSID=256c22c1e5242e9e4d5dca3e14cd8dca; SameSite=None; Secure;`
             },
         });
 
@@ -84,7 +84,7 @@ app.get('/data-api/modal/neue-download', async (req, res) => {
                 'Accept': 'application/json',
                 'Accept-Encoding': 'gzip, deflate, br, zstd',
                 'Accept-Language': 'en-US,en;q=0.9',
-                Cookie: `PHPSESSID=6e8edbd832e46aad1f08310e65115bfa; SameSite=None; Secure;`,
+                Cookie: `PHPSESSID=256c22c1e5242e9e4d5dca3e14cd8dca; SameSite=None; Secure;`,
                 'If-None-Match': 'W/"ef2-4cczprVrK4JPv5uA6WpdwYZkUGU"',
                 'Referer': 'https://ee.proseotools.us/stock-video',
                 'sec-ch-ua': '"Google Chrome";v="131", "Chromium";v="131", "Not_A Brand";v="24"',
@@ -122,7 +122,7 @@ app.post('/elements-api/items/:itemId/download_and_license.json', async (req, re
         const apiResponse = await axios.post(targetURL, req.body, {
             headers: {
                 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36',
-                Cookie: `PHPSESSID=6e8edbd832e46aad1f08310e65115bfa; SameSite=None; Secure;`,
+                Cookie: `PHPSESSID=256c22c1e5242e9e4d5dca3e14cd8dca; SameSite=None; Secure;`,
                 'Content-Type': 'application/json', // Make sure the content type is set for JSON
                 'x-csrf-token': 'YfbKo3aqukKgBtCAhWGTv3_0h8VpT0nRVH4lMCLERoP5pUR9-z9POCpZga3uKejYrUKEBaaZbF7-htSxkRVnZw',
                 'x-csrf-token-2': 'w7VxwqrDtMKhXz3CoUxiw7oXwqzDk2QVw4LDnTdHWUdtd0zCu8KdOnXDlS_DqmfDocOOwpXDoWFgMMKpY8KgI8KIw4g3wo7CowzCscKfasOcwpM_wr_CgXplEsOGw77DoQ'
