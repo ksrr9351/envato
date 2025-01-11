@@ -3,6 +3,7 @@ const axios = require('axios');
 const cheerio = require('cheerio');
 const path = require('path');
 const cors = require('cors');
+require('dotenv').config();  // Load environment variables from .env file
 
 const app = express();
 const PORT = 3000;
