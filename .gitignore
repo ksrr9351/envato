@@ -1,0 +1,18 @@
+# Node.js dependencies
+node_modules/
+
+# Environment variables file
+.env
+
+# Logs
+*.log
+
+# Operating system files
+.DS_Store
+
+# Optional: Ignore the npm debug log
+npm-debug.log
+
+# Ignore specific server files
+server.js
+semrushproseotool.js
