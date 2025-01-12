@@ -4,11 +4,91 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login to Semrush</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <style>
+        /* Basic styling */
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(to right, #00b4db, #0083b0);
+            font-family: 'Poppins', sans-serif;
+            color: white;
+        }
+
+        h1 {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        /* Center the form container */
+        .container {
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 40px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        button {
+            padding: 15px 30px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        button:hover {
+            background-color: #45a049;
+            transform: translateY(-5px);
+        }
+
+        button:active {
+            background-color: #387d3b;
+            transform: translateY(2px);
+        }
+
+        /* Style SweetAlert popup */
+        #solve-captcha {
+            display: none;
+        }
+    </style>
 </head>
 <body>
-    <h1>Welcome to envato elements Login</h1>
-    <form action="/manage" method="post">
-        <button type="submit">Access Now</button>
-    </form>
+    <div class="container">
+        <h1>Welcome to Envato Login</h1>
+        <form action="/manage" method="post">
+            <button type="submit" onclick="showCaptcha();">Access Now</button>
+        </form>
+    </div>
+    <!-- <button type="submit" onclick="showCaptcha(event);">Access Now</button> -->
+    <div id="solve-captcha">
+        <!-- SweetAlert will appear here -->
+    </div>
+
+    <script>
+        // Function to show the SweetAlert captcha popup
+        function showCaptcha() {
+            Swal.fire({
+                title: 'Captcha Solving',
+                text: 'Please wait while we are solving captcha!',
+                icon: 'warning',
+                showConfirmButton: false,
+                allowOutsideClick: false  // Prevent closing by clicking outside
+            });
+        }
+    </script>
 </body>
 </html>
