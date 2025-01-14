@@ -146,20 +146,8 @@ app.use('/stock-video', async (req, res) => {
             maxRedirects: 0, // Prevent following redirects automatically
         });
 
-        // Process the valid response (e.g., updating URLs as before)
-        const $ = cheerio.load(response.data);
-
-        $('link[href], script[src], img[src]').each((_, element) => {
-            const attr = element.tagName === 'link' ? 'href' : 'src';
-            const url = $(element).attr(attr);
-
-            if (url && url.startsWith('/') && !url.startsWith('http')) {
-                $(element).attr(attr, `https://ee.proseotools.us${url}`);
-            }
-        });
-
-        res.set('Content-Type', 'text/html; charset=utf-8');
-        res.send($.html());
+        // Call the helper function to fetch HTML content and fix asset URLs
+         await fetchAndSendHTML(targetURL, req, res);
 
     } catch (error) {
         if (error.response && error.response.status === 302 && error.response.headers.location.includes('/user/login.php')) {
