@@ -12,7 +12,7 @@ app.use(express.json());  // Parse JSON bodies as well
 
 const headers = {
   'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36',
-  Cookie: 'PHPSESSID=d5acfcde504decb710d897f37104b630;'
+  Cookie: 'PHPSESSID=8e4275feeb981349cb1db2068f5bcfef;'
 };
 
 // CAPTCHA details
@@ -140,7 +140,7 @@ app.use('/stock-video', async (req, res) => {
         const response = await axios.get(targetURL, {
             headers: {
                 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36',
-                Cookie: 'PHPSESSID=d5acfcde504decb710d897f37104b630;'
+                Cookie: 'PHPSESSID=8e4275feeb981349cb1db2068f5bcfef;'
             },
             withCredentials: true,
             maxRedirects: 0, // Prevent following redirects automatically
@@ -204,7 +204,7 @@ app.get('/data-api/modal/neue-download', async (req, res) => {
         'Accept': 'application/json',
         'Accept-Encoding': 'gzip, deflate, br, zstd',
         'Accept-Language': 'en-US,en;q=0.9',
-        Cookie: 'PHPSESSID=d5acfcde504decb710d897f37104b630;',
+        Cookie: 'PHPSESSID=8e4275feeb981349cb1db2068f5bcfef;',
       },
       withCredentials: true,
     });
@@ -240,7 +240,7 @@ app.post('/elements-api/items/:itemId/download_and_license.json', async (req, re
     const apiResponse = await axios.post(targetURL, req.body, {
       headers: {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36',
-        Cookie: 'PHPSESSID=d5acfcde504decb710d897f37104b630;',  // Ensure your session is valid
+        Cookie: 'PHPSESSID=8e4275feeb981349cb1db2068f5bcfef;',  // Ensure your session is valid
         'Content-Type': 'application/json',  // Ensure content type is set to JSON
         'x-csrf-token': csrfToken1,  // Use the CSRF token from the request header
         'x-csrf-token-2': csrfToken2,  // Use the second CSRF token from the request header
@@ -306,7 +306,7 @@ app.get('/_autosuggest', async (req, res) => {
         'accept': 'application/json',
         'accept-encoding': 'gzip, deflate, br, zstd',
         'accept-language': 'en-US,en;q=0.9',
-        Cookie: 'PHPSESSID=d5acfcde504decb710d897f37104b630;',
+        Cookie: 'PHPSESSID=8e4275feeb981349cb1db2068f5bcfef;',
         'user-agent': 'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Mobile Safari/537.36',
       },
     });
@@ -342,7 +342,7 @@ app.get('/elements-api/items/:itemId.json', async (req, res) => {
         'accept': 'application/json',
         'accept-encoding': 'gzip, deflate, br, zstd',
         'accept-language': 'en-US,en;q=0.9',
-        Cookie: 'PHPSESSID=d5acfcde504decb710d897f37104b630;',
+        Cookie: 'PHPSESSID=8e4275feeb981349cb1db2068f5bcfef;',
         'user-agent': 'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Mobile Safari/537.36',
         'x-csrf-token': csrfToken3,  // Use the CSRF token from the request header
         'x-csrf-token-2': csrfToken4,  // Use the second CSRF token from the request header
@@ -369,7 +369,7 @@ app.get('/data-api/page/item-detail-neue', async (req, res) => {
         'accept': 'application/json',
         'accept-encoding': 'gzip, deflate, br, zstd',
         'accept-language': 'en-US,en;q=0.9',
-        Cookie: 'PHPSESSID=d5acfcde504decb710d897f37104b630;',
+        Cookie: 'PHPSESSID=8e4275feeb981349cb1db2068f5bcfef;',
         'user-agent': 'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Mobile Safari/537.36',
       },
     });
