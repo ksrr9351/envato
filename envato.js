@@ -130,10 +130,46 @@ async function fetchAndSendHTML(targetURL, req, res) {
   }
 }
 
-// Use POST for handling form submission
 app.use('/stock-video', async (req, res) => {
-  const targetURL = `https://ee.proseotools.us/stock-video${req.url}`;
-  await fetchAndSendHTML(targetURL, req, res);
+    const targetURL = `https://ee.proseotools.us/stock-video${req.url}`;
+
+    try {
+        const cookies = process.env.COOKIE;  // Get cookie from the .env file
+
+        // Make the request to the target URL with the session cookie
+        const response = await axios.get(targetURL, {
+            headers: {
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36',
+                Cookie: 'PHPSESSID=d5acfcde504decb710d897f37104b630;'
+            },
+            withCredentials: true,
+            maxRedirects: 0, // Prevent following redirects automatically
+        });
+
+        // Process the valid response (e.g., updating URLs as before)
+        const $ = cheerio.load(response.data);
+
+        $('link[href], script[src], img[src]').each((_, element) => {
+            const attr = element.tagName === 'link' ? 'href' : 'src';
+            const url = $(element).attr(attr);
+
+            if (url && url.startsWith('/') && !url.startsWith('http')) {
+                $(element).attr(attr, `https://ee.proseotools.us${url}`);
+            }
+        });
+
+        res.set('Content-Type', 'text/html; charset=utf-8');
+        res.send($.html());
+
+    } catch (error) {
+        if (error.response && error.response.status === 302 && error.response.headers.location.includes('/user/login.php')) {
+            // If the response is a redirect to the login page, cookie is expired
+            return res.status(401).send('Cookies have expired. Please renew them.');
+        } else {
+            console.error('Error fetching data:', error.message);
+            res.status(500).send(`Failed to fetch content: ${error.message}`);
+        }
+    }
 });
 
 // New route to fetch JSON data with .json extension
