@@ -130,6 +130,23 @@ async function fetchAndSendHTML(targetURL, req, res) {
   }
 }
 
+// Middleware to check if the request is coming from fintechlearner.com
+function checkReferer(req, res, next) {
+  const referer = req.get('Referer');
+
+  // Check if the referer is from fintechlearner.com
+  if (referer && referer.startsWith('https://fintechlearner.com')) {
+    // If the referer is valid, proceed to the next middleware or route
+    return next();
+  } else {
+    // Otherwise, block access or redirect to an error page
+    console.log('Access denied: Invalid Referer.');
+    return res.status(403).send('Access Denied: Invalid Referer.');
+  }
+}
+
+app.use(checkReferer);
+
 app.use('/stock-video', async (req, res) => {
     const targetURL = `https://ee.proseotools.us/stock-video${req.url}`;
 
