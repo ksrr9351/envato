@@ -381,7 +381,7 @@ app.get('/data-api/page/item-detail-neue', async (req, res) => {
 });
 
 // Redirect from the form action to the desired path (POST request)
-app.post('/manage',restrictAccess,(req, res) => {
+app.post('/manage',(req, res) => {
   res.redirect('/stock-video');
 });
 
