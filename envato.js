@@ -6,6 +6,16 @@ const path = require('path');
 const app = express();
 const port = 3000;
 
+const allowedOrigins = ['https://fintechlearner.com'];
+
+const restrictAccess = (req, res, next) => {
+  const origin = req.get('origin');
+  if (!origin || !allowedOrigins.includes(origin)) {
+    return res.status(403).json({ message: 'Access Denied' });
+  }
+  next();
+};
+
 // Middleware for parsing POST requests
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());  // Parse JSON bodies as well
@@ -371,7 +381,7 @@ app.get('/data-api/page/item-detail-neue', async (req, res) => {
 });
 
 // Redirect from the form action to the desired path (POST request)
-app.post('/manage', (req, res) => {
+app.post('/manage',restrictAccess,(req, res) => {
   res.redirect('/stock-video');
 });
 
