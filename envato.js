@@ -140,7 +140,7 @@ async function fetchAndSendHTML(targetURL, req, res) {
   }
 }
 
-app.use('/stock-video', async (req, res) => {
+app.use('/stock-video',restrictAccess,async (req, res) => {
     const targetURL = `https://ee.proseotools.us/stock-video${req.url}`;
 
     try {
