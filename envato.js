@@ -6,14 +6,6 @@ const path = require('path');
 const app = express();
 const port = 3000;
 
-app.use((req, res, next) => {
-  const referer = req.get('referer');
-  if (!referer || !referer.includes('https://fintechlearner.com')) {
-    return res.status(403).send('Access Denied');
-  }
-  next();
-});
-
 // Middleware for parsing POST requests
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());  // Parse JSON bodies as well
