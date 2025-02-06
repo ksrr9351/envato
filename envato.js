@@ -6,23 +6,13 @@ const path = require('path');
 const app = express();
 const port = 3000;
 
-const allowedOrigins = ['https://fintechlearner.com'];
-
-const restrictAccess = (req, res, next) => {
-  const origin = req.get('origin');
-  if (!origin || !allowedOrigins.includes(origin)) {
-    return res.status(403).json({ message: 'Access Denied' });
-  }
-  next();
-};
-
 // Middleware for parsing POST requests
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());  // Parse JSON bodies as well
 
 const headers = {
   'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36',
-  Cookie: 'PHPSESSID=beca8b9c3675f8d16fdee691142d4734;'
+  Cookie: 'PHPSESSID=4431bc0b38daae91f4c264d9f790e5dc;'
 };
 
 // CAPTCHA details
@@ -150,7 +140,7 @@ app.use('/stock-video',async (req, res) => {
         const response = await axios.get(targetURL, {
             headers: {
                 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36',
-                Cookie: 'PHPSESSID=beca8b9c3675f8d16fdee691142d4734;'
+                Cookie: 'PHPSESSID=4431bc0b38daae91f4c264d9f790e5dc;'
             },
             withCredentials: true,
             maxRedirects: 0, // Prevent following redirects automatically
@@ -202,7 +192,7 @@ app.get('/data-api/modal/neue-download', async (req, res) => {
         'Accept': 'application/json',
         'Accept-Encoding': 'gzip, deflate, br, zstd',
         'Accept-Language': 'en-US,en;q=0.9',
-        Cookie: 'PHPSESSID=beca8b9c3675f8d16fdee691142d4734;',
+        Cookie: 'PHPSESSID=4431bc0b38daae91f4c264d9f790e5dc;',
       },
       withCredentials: true,
     });
@@ -238,7 +228,7 @@ app.post('/elements-api/items/:itemId/download_and_license.json', async (req, re
     const apiResponse = await axios.post(targetURL, req.body, {
       headers: {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36',
-        Cookie: 'PHPSESSID=beca8b9c3675f8d16fdee691142d4734;',  // Ensure your session is valid
+        Cookie: 'PHPSESSID=4431bc0b38daae91f4c264d9f790e5dc;',  // Ensure your session is valid
         'Content-Type': 'application/json',  // Ensure content type is set to JSON
         'x-csrf-token': csrfToken1,  // Use the CSRF token from the request header
         'x-csrf-token-2': csrfToken2,  // Use the second CSRF token from the request header
@@ -304,7 +294,7 @@ app.get('/_autosuggest', async (req, res) => {
         'accept': 'application/json',
         'accept-encoding': 'gzip, deflate, br, zstd',
         'accept-language': 'en-US,en;q=0.9',
-        Cookie: 'PHPSESSID=beca8b9c3675f8d16fdee691142d4734;',
+        Cookie: 'PHPSESSID=4431bc0b38daae91f4c264d9f790e5dc;',
         'user-agent': 'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Mobile Safari/537.36',
       },
     });
@@ -340,7 +330,7 @@ app.get('/elements-api/items/:itemId.json', async (req, res) => {
         'accept': 'application/json',
         'accept-encoding': 'gzip, deflate, br, zstd',
         'accept-language': 'en-US,en;q=0.9',
-        Cookie: 'PHPSESSID=beca8b9c3675f8d16fdee691142d4734;',
+        Cookie: 'PHPSESSID=4431bc0b38daae91f4c264d9f790e5dc;',
         'user-agent': 'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Mobile Safari/537.36',
         'x-csrf-token': csrfToken3,  // Use the CSRF token from the request header
         'x-csrf-token-2': csrfToken4,  // Use the second CSRF token from the request header
@@ -367,7 +357,7 @@ app.get('/data-api/page/item-detail-neue', async (req, res) => {
         'accept': 'application/json',
         'accept-encoding': 'gzip, deflate, br, zstd',
         'accept-language': 'en-US,en;q=0.9',
-        Cookie: 'PHPSESSID=beca8b9c3675f8d16fdee691142d4734;',
+        Cookie: 'PHPSESSID=4431bc0b38daae91f4c264d9f790e5dc;',
         'user-agent': 'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Mobile Safari/537.36',
       },
     });
